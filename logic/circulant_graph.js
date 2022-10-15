@@ -79,7 +79,7 @@ class CirculantGraph {
         (subsets, value) => subsets.concat(
           subsets.map(set => [value,...set])
         ),
-        [[]]
+        [[0]]
       );
     
     let sourceSet = []
