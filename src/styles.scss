@@ -91,6 +91,38 @@
 @media screen and (max-width: 800px) {
   .App {
     flex-direction: column;
+
+    #main {
+      width: 100vw;
+      height: 50vh;
+      padding: 0;
+
+      .row-logo {
+        justify-content: center;
+      }
+
+      .input-content {
+        align-items: center;
+        justify-content: flex-start;
+        margin: 0;
+
+        form {
+          width: 100%;
+          margin: 0;
+
+          .row-form {
+            flex-direction: column;
+            gap: 20px;
+
+          }
+        }
+      }
+    }
+
+    #visualizer {
+      width: 100vw;
+      height: 50vh;
+    }
   }
   
 }
