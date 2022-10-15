@@ -27,6 +27,7 @@ function App() {
       <div id='main'>
         <div className='row-logo'>
           <img src={logo} alt='logo' />
+          <h2>Circulant Graph</h2>
         </div>
         <div className='input-content'>
           <form onSubmit={handleGenerate}>
