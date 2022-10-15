@@ -75,9 +75,9 @@ class CirculantGraph {
 
   getPowerset() {
     const getAllSubsets = 
-      theArray => theArray.reduce(
+      (theArray) => theArray.reduce(
         (subsets, value) => subsets.concat(
-         subsets.map(set => [value,...set])
+          subsets.map(set => [value,...set])
         ),
         [[]]
       );
