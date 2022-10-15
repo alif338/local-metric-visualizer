@@ -1,32 +1,51 @@
+import './styles.scss'
+import logo from './assets/app-logo.svg'
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import visualizeCirculantGraph from '../logic/graph_visualizer'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [numVertex, setNumVertex] = useState()
+  const [parameters, setParameters] = useState()
+
+  const handleGenerate = (e) => {
+    e.preventDefault()
+    if (!numVertex || !parameters) {
+      alert('Please fill in all fields')
+      return
+    }
+    const parseParams = parameters.split(',').map((param) => parseInt(param))
+    console.log('Generating graph with parameters:', `${numVertex}, ${parseParams}`)
+    visualizeCirculantGraph(numVertex, parseParams)
+  }
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div id='main'>
+        <div className='row-logo'>
+          <img src={logo} alt='logo' />
+        </div>
+        <div className='input-content'>
+          <form onSubmit={handleGenerate}>
+            <div className='row-form'>
+              <label htmlFor='num-vertex'>Number of Vertex (1-20)</label>
+              <div className='input'>
+                <input type='number' min={1} max={20} name='num-vertex' placeholder='Exp: 5' onChange={(e) => setNumVertex(e.target.value)} />
+              </div>
+            </div>
+            <div className='row-form'>
+              <label htmlFor='parameters'>Parameters</label>
+              <div className='input'>
+                <input type='text' name='parameters' placeholder='Exp: (1,2), (1,3), (1,2,3), ...' onChange={(e) => setParameters(e.target.value)} />
+              </div>
+            </div>
+            <div className='row-form'>
+              <button id='submit' type='submit'>Generate</button>
+            </div>
+          </form>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div id='visualizer'>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
   )
 }
