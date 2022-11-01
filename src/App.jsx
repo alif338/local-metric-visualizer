@@ -40,7 +40,7 @@ function App() {
             <div className='row-form'>
               <label htmlFor='parameters'>Parameters</label>
               <div className='input'>
-                <input type='text' name='parameters' placeholder='Exp: (1,2), (1,3), (1,2,3), ...' onChange={(e) => setParameters(e.target.value)} />
+                <input type='text' name='parameters' placeholder='Exp: "1,2", "1,3", "1,2,3", ...' onChange={(e) => setParameters(e.target.value)} />
               </div>
             </div>
             <div className='row-form'>
