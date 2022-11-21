@@ -32,9 +32,9 @@ function App() {
         <div className='input-content'>
           <form onSubmit={handleGenerate}>
             <div className='row-form'>
-              <label htmlFor='num-vertex'>Number of Vertex (3-20)</label>
+              <label htmlFor='num-vertex'>Number of Vertex (3-100)</label>
               <div className='input'>
-                <input type='number' min={3} max={20} name='num-vertex' placeholder='Exp: 5' onChange={(e) => setNumVertex(e.target.value)} />
+                <input type='number' min={3} max={100} name='num-vertex' placeholder='Exp: 5' onChange={(e) => setNumVertex(e.target.value)} />
               </div>
             </div>
             <div className='row-form'>
