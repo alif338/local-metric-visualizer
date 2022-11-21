@@ -12,6 +12,8 @@ function findLmd(n, l) {
   console.log('distance matrix', distanceMatrix)
 
   let gPowerset = graph.getPowerset()
+
+  // necessarySet digunakan untuk 'menguli' tiap elemen yang dapat menjadi lmd
   let necessarySet = gPowerset.filter(set => 1 < set.length && set.length < n).sort((a, b) => a.length - b.length)
   console.log('power set', gPowerset)
   console.log('necessarySet', necessarySet)
