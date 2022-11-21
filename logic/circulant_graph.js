@@ -50,8 +50,8 @@ class CirculantGraph {
     for (let i = 0; i < this.n; i++) {
       distances.push("inf")
     }
-    console.log('distances', distances)
-    console.log('adjacencyMatrix', this.adjacencyMatrix)
+    // console.log('distances', distances)
+    // console.log('adjacencyMatrix', this.adjacencyMatrix)
     distances[source] = 0
     // create an empty queue
     let queue = []
@@ -88,6 +88,24 @@ class CirculantGraph {
     }
 
     return getAllSubsets(sourceSet)
+  }
+
+  getPowersetWithSize(theArray, len) {
+    const result = []
+    if (len == 1) {
+      return theArray.map(val => [val])
+    }
+    const generateSet = (array, prefixArray, size) => {
+      if (prefixArray.length == size) {
+        result.push(prefixArray)
+        return
+      }
+      for (let i = 0; i < array.length; i++) {
+        generateSet(array.slice(i+1), [...prefixArray, array[i]], len)
+      }
+    }
+    generateSet(theArray, [], len)
+    return result
   }
 }
 

@@ -1,4 +1,4 @@
-import CirculantGraph from "./circulant_graph"
+import CirculantGraph from "./circulant_graph.js"
 
 function findLmd(n, l) {
   let graph = new CirculantGraph(n, l)
@@ -9,17 +9,23 @@ function findLmd(n, l) {
     distanceMatrix.push(graph.findDistance(i))
   }
 
-  console.log('distance matrix', distanceMatrix)
+  // console.log('distance matrix', distanceMatrix)
 
-  let gPowerset = graph.getPowerset()
+  // let gPowerset = graph.getPowerset()
 
   // necessarySet digunakan untuk 'menguli' tiap elemen yang dapat menjadi lmd
-  let necessarySet = gPowerset.filter(set => 1 < set.length && set.length < n).sort((a, b) => a.length - b.length)
-  console.log('power set', gPowerset)
-  console.log('necessarySet', necessarySet)
+  // let necessarySet = gPowerset.filter(set => 1 < set.length && set.length < n).sort((a, b) => a.length - b.length)
+  // console.log('power set', gPowerset)
+  // console.log('necessarySet', necessarySet)
 
   let chosenLmd = []
+  let lmdLength = 1
+  let necessarySet = []
   while (chosenLmd.length == 0) {
+    console.log(Array.from(Array(n).keys()))
+    necessarySet = graph.getPowersetWithSize(Array.from(Array(n).keys()), lmdLength)
+    console.log('lmdLength', lmdLength)
+    console.log('necessarySet',necessarySet)
     for (let loc of necessarySet) {
       // console.log('loc:', loc)
       let metricDistances = distanceMatrix.map(row => loc.map(i => row[i]).join(''))
@@ -51,12 +57,21 @@ function findLmd(n, l) {
         break
       }
     };
+    lmdLength = lmdLength + 1
   }
 
-  // console.log('chosenLmd:', chosenLmd[0])
+  console.log('chosenLmd:', chosenLmd[0])
 
   return [adjacencyMatrix, chosenLmd[0]]
 }
 
-// findLmd(22, [1,2])
+const factorial = (n) => {
+  if (n == 0) {
+    return 1
+  } else {
+    return n * factorial(n - 1)
+  }
+}
+
+// findLmd(60, [1,16,5,25,56, 50, 40])
 export default findLmd

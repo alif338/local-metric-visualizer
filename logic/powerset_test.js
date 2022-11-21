@@ -15,9 +15,13 @@ const getAllSubsets = (theArray) => {
 
 const getAllSubsets2 = (theArray, size) => {
   const result = []
+  if (size == 1) {
+    console.log(theArray.map(val => [val]))
+    return theArray.map(val => [val])
+  }
   const generateSet = (array, prefixArray, size) => {
     if (prefixArray.length == size) {
-      console.log(prefixArray)
+      // console.log(prefixArray)
       result.push(prefixArray)
       return
     }
@@ -27,6 +31,7 @@ const getAllSubsets2 = (theArray, size) => {
   }
   generateSet(theArray, [], size)
   console.log('FINAL',result)
+  return result
 }
 
-getAllSubsets2(['a','b','c','d','e','f','g'],4)
+getAllSubsets2(Array.from(Array(10).keys()),2)
