@@ -47,7 +47,7 @@
           }
 
           .input {
-            width: 50%;
+            width: 45%;
 
             input {
               width: 100%;
@@ -73,6 +73,19 @@
             box-shadow: 0 0 0 0;
             transition: border-color 0.25s;
           }
+        }
+
+        .separator {
+          margin-top: 20px;
+          height: 2px;
+          background-color: rgba(255, 255, 255, 0.486);
+        }
+
+        .generate-xlsx {
+          margin-top: 20px;
+          background-color: green;
+          color: white;
+          font-size: 16pt;
         }
       }
 
@@ -119,6 +132,11 @@
             flex-direction: column;
             gap: 20px;
 
+          }
+
+          .generate-xlsx {
+            margin-top: 20px;
+            background-color: white;
           }
         }
       }

@@ -2,10 +2,13 @@ import './styles.scss'
 import logo from './assets/app-logo.svg'
 import { useState } from 'react'
 import visualizeCirculantGraph from '../logic/graph_visualizer'
+import { writeToExcel } from '../logic/excel_generator'
 
 function App() {
   const [numVertex, setNumVertex] = useState()
   const [parameters, setParameters] = useState()
+  const [nMax, setNMax] = useState()
+  const [kMax, setKMax] = useState()
 
   const handleGenerate = (e) => {
     e.preventDefault()
@@ -20,6 +23,19 @@ function App() {
     const parseParams = parameters.split(',').map((param) => parseInt(param))
     console.log('Generating graph with parameters:', `${numVertex}, ${parseParams}`)
     visualizeCirculantGraph(numVertex, parseParams)
+  }
+
+  const createExcel = async () => {
+    console.log(nMax, kMax)
+    if (!nMax || !kMax) {
+      alert('Largest n and k must be filled in')
+      return
+    }
+    if (nMax < 20 || kMax < 2) {
+      alert('Largest n and k must be at least 3 and 20')
+      return
+    }
+    await writeToExcel(nMax, kMax)
   }
 
   return (
@@ -44,8 +60,19 @@ function App() {
               </div>
             </div>
             <div className='row-form'>
-              <button id='submit' type='submit'>Generate</button>
+              <button id='submit' type='submit'>Generate Graph</button>
             </div>
+            <div className='separator'></div>
+            <p>For generate excel of lmd of Graph Cn(1,k)</p>
+            <div className='row-form'>
+              <div className='input'>
+                <input type={'number'} min={20} max={75} placeholder='Largest order (n)' onChange={(e) => setNMax(parseInt(e.target.value))}/>
+              </div>
+              <div className='input'>
+                <input type={'number'} min={2} max={75} placeholder='Largest k' onChange={(e) => setKMax(parseInt(e.target.value))}/>
+              </div>
+            </div>
+            <button type='button' onClick={createExcel} className='generate-xlsx'>Generate .xlsx File</button>
           </form>
         </div>
       </div>
