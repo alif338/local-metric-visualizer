@@ -38,7 +38,7 @@ export async function writeToExcel(nMax, kMax) {
   }
   console.log('lmdlist',lmdList)
   for (let i = 5; i <= nMax; i++) {
-    cols.push(`n${i}`)
+    cols.push(`n_${i}`)
   }
   // /* fetch JSON data and parse */
   // const url = "https://sheetjs.com/data/executive.json";
