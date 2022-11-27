@@ -74,7 +74,10 @@ function App() {
               <button id='submit' type='submit'>Generate Graph</button>
             </div>
             <div className='separator'></div>
+            <div className='row-form'>
             <p>For generate excel of lmd of Graph Cn(1,k)</p>
+            <a href='/result_example.png' target={'_blank'}>Preview</a>
+            </div>
             <div className='row-form'>
               <div className='input'>
                 <input type={'number'} min={20} max={75} placeholder='Largest order (n)' onChange={(e) => {setNMax(parseInt(e.target.value)); setParamWarning(parseInt(e.target.value) > 50 && kMax > 50)}}/>

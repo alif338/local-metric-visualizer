@@ -62,7 +62,7 @@ export async function writeToExcel(nMax, kMax) {
   XLSX.utils.sheet_add_aoa(worksheet, [["Cn(1,k) \\ n", ...cols]], { origin: "A1" });
 
   /* calculate column width */
-  const max_width = 7;
+  const max_width = 10;
   worksheet["!cols"] = [ { wch: max_width },{ wch: max_width },{ wch: max_width } ];
 
   /* create an XLSX file and try to save to Presidents.xlsx */
