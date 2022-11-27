@@ -81,8 +81,12 @@
           background-color: rgba(255, 255, 255, 0.486);
         }
 
+        .warning {
+          color: yellow;
+        }
+
         .generate-xlsx {
-          margin-top: 20px;
+          margin-top: 10px;
           background-color: green;
           color: white;
           font-size: 16pt;
@@ -135,7 +139,7 @@
           }
 
           .generate-xlsx {
-            margin-top: 20px;
+            margin-top: 10px;
             background-color: white;
           }
         }

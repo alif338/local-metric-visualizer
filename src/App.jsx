@@ -9,9 +9,12 @@ function App() {
   const [parameters, setParameters] = useState()
   const [nMax, setNMax] = useState()
   const [kMax, setKMax] = useState()
+  const [nkChanged, setNkChanged] = useState(false)
+  const [paramWarning, setParamWarning] = useState(false)
 
   const handleGenerate = (e) => {
     e.preventDefault()
+    if (!nkChanged) return
     if (!numVertex || !parameters) {
       alert('Please fill in all fields')
       return
@@ -23,6 +26,7 @@ function App() {
     const parseParams = parameters.split(',').map((param) => parseInt(param))
     console.log('Generating graph with parameters:', `${numVertex}, ${parseParams}`)
     visualizeCirculantGraph(numVertex, parseParams)
+    setNkChanged(false)
   }
 
   const createExcel = async () => {
@@ -35,7 +39,14 @@ function App() {
       alert('Largest n and k must be at least 3 and 20')
       return
     }
-    await writeToExcel(nMax, kMax)
+    if (nMax > 75 || kMax > 75) {
+      alert('Largest n and k must be at most 75')
+      return
+    }
+    await writeToExcel(nMax, kMax).then(() => {
+      // alert('Excel file generated successfully')
+      location.reload()
+    })
   }
 
   return (
@@ -50,13 +61,13 @@ function App() {
             <div className='row-form'>
               <label htmlFor='num-vertex'>Number of Vertex (3-100)</label>
               <div className='input'>
-                <input type='number' min={3} max={100} name='num-vertex' placeholder='Exp: 5' onChange={(e) => setNumVertex(e.target.value)} />
+                <input type='number' min={3} max={100} name='num-vertex' placeholder='Exp: 5' onChange={(e) => {setNumVertex(e.target.value); setNkChanged(true)}} />
               </div>
             </div>
             <div className='row-form'>
               <label htmlFor='parameters'>Parameters</label>
               <div className='input'>
-                <input type='text' name='parameters' placeholder='Exp: "1,2", "1,3", "1,2,3", ...' onChange={(e) => setParameters(e.target.value)} />
+                <input type='text' name='parameters' placeholder='Exp: "1,2", "1,3", "1,2,3", ...' onChange={(e) => {setParameters(e.target.value); setNkChanged(true)}} />
               </div>
             </div>
             <div className='row-form'>
@@ -66,12 +77,13 @@ function App() {
             <p>For generate excel of lmd of Graph Cn(1,k)</p>
             <div className='row-form'>
               <div className='input'>
-                <input type={'number'} min={20} max={75} placeholder='Largest order (n)' onChange={(e) => setNMax(parseInt(e.target.value))}/>
+                <input type={'number'} min={20} max={75} placeholder='Largest order (n)' onChange={(e) => {setNMax(parseInt(e.target.value)); setParamWarning(parseInt(e.target.value) > 50 && kMax > 50)}}/>
               </div>
               <div className='input'>
-                <input type={'number'} min={2} max={75} placeholder='Largest k' onChange={(e) => setKMax(parseInt(e.target.value))}/>
+                <input type={'number'} min={2} max={75} placeholder='Largest k' onChange={(e) => {setKMax(parseInt(e.target.value)); setParamWarning(parseInt(e.target.value) > 50 && nMax > 50)}}/>
               </div>
             </div>
+            {paramWarning ? <p className='warning'>Warning: Komputasi mungkin akan berat untuk nilai diatas 50</p> : <></>}
             <button type='button' onClick={createExcel} className='generate-xlsx'>Generate .xlsx File</button>
           </form>
         </div>

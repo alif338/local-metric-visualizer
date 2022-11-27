@@ -8,28 +8,28 @@ export async function writeToExcel(nMax, kMax) {
     const rows = {}
     rows['label'] = `Cn(1,${k})`
     for (let n = 5; n <= nMax; n++) {
-      if (k == 2) {
-        if (n % 4 == 2 || n % 4 == 3) {
-          rows[`n${n}`] = 2
-        } else if (n % 4 == 0) {
-          rows[`n${n}`] = 3
-        } else {
-          rows[`n${n}`] = 4
-        }
-      }
-      if (k == 3) {
-        if (n % 2 == 0) {
-          rows[`n${n}`] = 1
-        } else {
-          rows[`n${n}`] = 2
-        }
-      }
-      if (2*k + 1 == n) {
-        rows[`n${n}`] = 4
-      }
-      if (n % 2 == 0 && k % 2 == 1) {
-        rows[`n${n}`] = 1
-      }
+      // if (k == 2) {
+      //   if (n % 4 == 2 || n % 4 == 3) {
+      //     rows[`n${n}`] = 2
+      //   } else if (n % 4 == 0) {
+      //     rows[`n${n}`] = 3
+      //   } else {
+      //     rows[`n${n}`] = 4
+      //   }
+      // }
+      // if (k == 3) {
+      //   if (n % 2 == 0) {
+      //     rows[`n${n}`] = 1
+      //   } else {
+      //     rows[`n${n}`] = 2
+      //   }
+      // }
+      // if (2*k + 1 == n) {
+      //   rows[`n${n}`] = 4
+      // }
+      // if (n % 2 == 0 && k % 2 == 1) {
+      //   rows[`n${n}`] = 1
+      // }
       if (!rows[`n${n}`]) {
         rows[`n${n}`] = findLmd(n, [1,k])[1].length
       }
@@ -38,7 +38,7 @@ export async function writeToExcel(nMax, kMax) {
   }
   console.log('lmdlist',lmdList)
   for (let i = 5; i <= nMax; i++) {
-    cols.push(`n_${i}`)
+    cols.push(`n${i}`)
   }
   // /* fetch JSON data and parse */
   // const url = "https://sheetjs.com/data/executive.json";
