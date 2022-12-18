@@ -50,8 +50,6 @@ class CirculantGraph {
     for (let i = 0; i < this.n; i++) {
       distances.push("inf")
     }
-    // console.log('distances', distances)
-    // console.log('adjacencyMatrix', this.adjacencyMatrix)
     distances[source] = 0
     // create an empty queue
     let queue = []
