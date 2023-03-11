@@ -24,13 +24,11 @@ function App() {
       return
     }
     const parseParams = parameters.split(',').map((param) => parseInt(param))
-    console.log('Generating graph with parameters:', `${numVertex}, ${parseParams}`)
     visualizeCirculantGraph(numVertex, parseParams)
     setNkChanged(false)
   }
 
   const createExcel = async () => {
-    console.log(nMax, kMax)
     if (!nMax || !kMax) {
       alert('Largest n and k must be filled in')
       return

@@ -4,24 +4,25 @@ function findLmd(n, l) {
   let graph = new CirculantGraph(n, l)
   let adjacencyMatrix = graph.getAdjacencyMatrix()
 
-  // console.log('adjacency matrix:')
-  // adjacencyMatrix.forEach(row => console.log(JSON.stringify(row)))
   let distanceMatrix = []
-  console.log(`\ndistance matrix C_${n}(${l}):`)
+  // loop for build a distance matrix
   for (let i = 0; i < n; i++) {
     let distances = graph.findDistance(i)
     distanceMatrix.push(distances)
-    console.log(JSON.stringify(distances))
   }
 
   let chosenLmd = []
   let lmdLength = 1
-  let necessarySet = []
+  let necessarySet = [] // 'necessarySet' used for put up powerset with specific cardinality
   while (chosenLmd.length == 0) {
+    // Get all subsets with size 'lmdLength' each
     necessarySet = graph.getPowersetWithSize(Array.from(Array(n).keys()), lmdLength)
     for (let loc of necessarySet) {
+      // Count distances of a vertex to another
       let metricDistances = distanceMatrix.map(row => loc.map(i => row[i]).join(''))
       let hasSimilarMetricAdjacent = false
+
+      // loop for determine which pair has similar distances and adjacent
       metricDistances.forEach((val, ind) => {
         for (let j = ind + 1; j < metricDistances.length; j++) {
           if (val == metricDistances[j]) {
@@ -35,7 +36,7 @@ function findLmd(n, l) {
         }
 
         if (hasSimilarMetricAdjacent) {
-          return // terminate check for this loc
+          return // terminate check for this 'loc'
         } else {
           if (ind + 1 == n) {
             chosenLmd.push(loc)
@@ -45,13 +46,12 @@ function findLmd(n, l) {
       })
 
       if (chosenLmd.length > 0) {
-        break
+        break // terminate loop if there found a local metric basis
       }
     };
     lmdLength = lmdLength + 1
   }
 
-  console.log('& chosenLmd:', chosenLmd[0])
 
   return [adjacencyMatrix, chosenLmd[0]]
 }
@@ -64,5 +64,4 @@ const factorial = (n) => {
   }
 }
 
-findLmd(25, [1,12])
 export default findLmd

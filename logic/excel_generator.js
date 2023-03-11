@@ -14,7 +14,6 @@ export async function writeToExcel(nMax, kMax) {
     }
     lmdList.push(rows)
   }
-  console.log('lmdlist',lmdList)
   for (let i = 5; i <= nMax; i++) {
     cols.push(`n${i}`)
   }
