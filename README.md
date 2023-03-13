@@ -6,6 +6,7 @@
 Circulant Graph, notated by ![equation](https://latex.codecogs.com/svg.image?{\color{White}&space;G=C_n(a_1,a_2,...,a_k)})  is n-vertex graph which every ![equation](https://latex.codecogs.com/svg.image?{\color{White}&space;v_i&space;\in&space;V(G)}) are adjacent with ![equation](https://latex.codecogs.com/svg.image?{\color{White}&space;v_{(i&plus;a_j)\mod&space;n}) for ![equation](https://latex.codecogs.com/svg.image?{\color{White}&space;j=1,2,...,k}). Set ![equation](https://latex.codecogs.com/svg.image?{\color{White}&space;\{a_1,a_2,...,a_k\}}) is _a connected set_ of the graph. (Nicoloso S., 2007)
 
 ### Local Metric Dimension
+Let a subset ![equation](https://latex.codecogs.com/svg.image?{\color{White}&space;W&space;\in&space;V(G)}) for G is a simple connected graph. If ![equation](https://latex.codecogs.com/svg.image?{\color{White}&space;r(u|W)&space;=&space;r(v|W)}) for every pair ![equation](https://latex.codecogs.com/svg.image?{\color{White}&space;u,v}) adjacent, then W is local resolving set of G. For a minimum cardinality of W, is defined by Local Metric Dimension of G, notated by lmd(G) and all element of W is local metric basis of G. Every nontrivial connected graph G have local resolving set, for trivial example is V(G) (Okamoto F., 2010)
 
 
 ## About this app
