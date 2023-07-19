@@ -70,6 +70,7 @@ function App() {
             </div>
             <div className='row-form'>
               <button id='submit' type='submit'>Generate Graph</button>
+              <a className='paper' target='_blank' href='https://drive.google.com/file/d/1o48-jM5HV9asbcrCahiL_KlCNWhduGY_/view?usp=sharing'>Paper (.pdf)</a>
             </div>
             <div className='separator'></div>
             <div className='row-form'>
